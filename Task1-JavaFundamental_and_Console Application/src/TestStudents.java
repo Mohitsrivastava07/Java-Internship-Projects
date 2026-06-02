@@ -55,12 +55,15 @@ public class TestStudents {
     }
 
     public static void updateStudent(Scanner input) {
+        boolean found = false;
         System.out.print("Enter student id --> ");
         int studentId = input.nextInt();
         input.nextLine();
 
         for (int i = 0; i < count; i++) {
             if (students[i].getStudentId() == studentId) {
+                found = true;
+                
                 System.out.print("Enter new student name --> ");
                 String newStudentName = input.nextLine();
                 System.out.print("Enter new student age --> ");
@@ -69,16 +72,22 @@ public class TestStudents {
                 students[i].setStudentName(newStudentName);
                 students[i].setStudentAge(newStudentAge);
                 System.out.println("Student update successfully!!");
+                break;
             }
+        }
+        if (!found) {
+            System.out.println("Student not found!");
         }
     }
 
     public static void deleteStudent(Scanner input) {
+        boolean found = false;
         System.out.print("Enter student id --> ");
         int studentId = input.nextInt();
 
         for (int i = 0; i < count; i++) {
             if (students[i].getStudentId() == studentId) {
+                found = true;
                 for (int j = i; j < count - 1; j++) {
                     students[j] = students[j+1];
                 }
@@ -86,7 +95,11 @@ public class TestStudents {
                 count--;
 
                 System.out.println("Student deleted successfully!");
+                break;
             }
+        }
+        if (!found) {
+            System.out.println("Student not found!");
         }
     }
 

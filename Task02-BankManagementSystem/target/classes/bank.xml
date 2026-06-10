@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="bank_ds">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/bankmanagement_db" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
+
+    <bean class="org.springframework.jdbc.core.JdbcTemplate" name="jdbcTemplate">
+        <property name="dataSource">
+            <ref bean="bank_ds" />
+        </property>
+    </bean>
+
+    <!-- Transaction Manager Bean -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="bank_ds"/>
+    </bean>
+
+    <bean class="com.bankmanagement.dao.BankDaoImpl" name="bankDao">
+        <property name="jdbcTemplate" >
+            <ref bean="jdbcTemplate" />
+        </property>
+        <property name="transactionManager" >
+            <ref bean="transactionManager" />
+        </property>
+    </bean>
+
+</beans>

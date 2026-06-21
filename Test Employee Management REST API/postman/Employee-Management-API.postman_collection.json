@@ -1,0 +1,123 @@
+{
+  "info": {
+    "name": "Employee Management API",
+    "description": "CRUD and search/filter requests for the Employee Management REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Engineering\",\n  \"location\": \"Bangalore\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/departments", "host": ["{{baseUrl}}"], "path": ["api", "departments"] }
+          }
+        },
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/departments", "host": ["{{baseUrl}}"], "path": ["api", "departments"] }
+          }
+        },
+        {
+          "name": "Get Department By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/departments/1", "host": ["{{baseUrl}}"], "path": ["api", "departments", "1"] }
+          }
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Engineering & R&D\",\n  \"location\": \"Bangalore\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/departments/1", "host": ["{{baseUrl}}"], "path": ["api", "departments", "1"] }
+          }
+        },
+        {
+          "name": "Delete Department",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/departments/1", "host": ["{{baseUrl}}"], "path": ["api", "departments", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Aarav\",\n  \"lastName\": \"Sharma\",\n  \"email\": \"aarav.sharma@advorix.tech\",\n  \"phone\": \"9876543210\",\n  \"designation\": \"Software Engineer\",\n  \"salary\": 65000,\n  \"dateOfJoining\": \"2023-01-15\",\n  \"departmentId\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/employees", "host": ["{{baseUrl}}"], "path": ["api", "employees"] }
+          }
+        },
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/employees", "host": ["{{baseUrl}}"], "path": ["api", "employees"] }
+          }
+        },
+        {
+          "name": "Get Employee By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/employees/1", "host": ["{{baseUrl}}"], "path": ["api", "employees", "1"] }
+          }
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Aarav\",\n  \"lastName\": \"Sharma\",\n  \"email\": \"aarav.sharma@advorix.tech\",\n  \"phone\": \"9876543210\",\n  \"designation\": \"Senior Software Engineer\",\n  \"salary\": 85000,\n  \"dateOfJoining\": \"2023-01-15\",\n  \"departmentId\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/employees/1", "host": ["{{baseUrl}}"], "path": ["api", "employees", "1"] }
+          }
+        },
+        {
+          "name": "Delete Employee",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/employees/1", "host": ["{{baseUrl}}"], "path": ["api", "employees", "1"] }
+          }
+        },
+        {
+          "name": "Search/Filter Employees",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/employees/search?name=ar&designation=engineer&minSalary=40000&maxSalary=100000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "employees", "search"],
+              "query": [
+                { "key": "name", "value": "ar" },
+                { "key": "designation", "value": "engineer" },
+                { "key": "minSalary", "value": "40000" },
+                { "key": "maxSalary", "value": "100000" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

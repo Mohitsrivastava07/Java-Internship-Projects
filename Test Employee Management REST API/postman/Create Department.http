@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/departments
+Content-Type: application/json
+
+{
+  "name": "Engineering",
+  "location": "Bangalore"
+}
